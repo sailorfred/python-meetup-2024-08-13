@@ -1,0 +1,6 @@
+{% for i in range(4) -%}
+{{ word }}{{ i }}
+{% endfor %}
+{% for w in ['worda', 'wordb', 'wordc'] %}
+  {{- w|title + loop.index0|string }}
+{% endfor %}

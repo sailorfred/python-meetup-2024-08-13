@@ -1,0 +1,7 @@
+data:
+{%- for item in data recursive %}
+    {{ '    ' * loop.depth }}{{ item.key }}: {{ item.value}}
+    {%- if item.children %}
+    	{{- loop(item.children) }}
+    {%- endif %}
+{%- endfor %}

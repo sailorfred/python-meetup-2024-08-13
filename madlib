@@ -1,0 +1,19 @@
+#!venv3.11/bin/python3
+
+from jinja2 import Environment, FileSystemLoader, meta
+from jinja2.nodes import Template
+
+jenv: Environment = Environment(
+    autoescape=False,
+    loader=FileSystemLoader('templates'),
+    trim_blocks=False)
+template_source: Template = jenv.loader.get_source(jenv, 'madlib.jinja')[0]
+template: Template = jenv.get_template('madlib.jinja')
+parsed_content: Template = jenv.parse(template_source)
+vars: set[str] = meta.find_undeclared_variables(parsed_content)
+data: dict[str, str] = {}
+for word in vars:
+    trimmed_word: str = word[:word.rindex('_')]
+    data[word] = input(f"Give me an example of {trimmed_word}: ")
+
+print(template.render(data))

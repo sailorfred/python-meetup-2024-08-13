@@ -1,0 +1,11 @@
+{
+    "struct": {
+	"el": "element",
+	"el2": "element2"
+    },
+    "list": [
+	"list element 0",
+	"list element 1",
+	"list element 2"
+    ]
+}
